@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Articles — NyayIQ</title>
+<meta name="description" content="Tax law articles and analysis">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.articles-main { max-width: 1300px; margin: 0 auto; padding: 2rem 3rem 4rem; }
+.articles-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+.filter-btn { padding: 0.5rem 1.1rem; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; font-family: 'Inter Tight', sans-serif; font-size: 0.85rem; color: var(--ink-2); cursor: pointer; transition: all 0.2s; font-weight: 500; }
+.filter-btn:hover { border-color: var(--orange-deep); color: var(--orange-deep); }
+.filter-btn.active { background: var(--orange-deep); border-color: var(--orange-deep); color: var(--cream); }
+.articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; }
+.article-card { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; cursor: pointer; transition: all 0.3s; display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+.article-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(43,31,21,0.1); border-color: var(--orange); }
+.article-cover { aspect-ratio: 16/10; position: relative; display: grid; place-items: center; }
+.article-cover-glyph { font-family: 'Fraunces', serif; font-size: 5rem; color: var(--orange-deep); font-style: italic; font-weight: 300; opacity: 0.6; }
+.article-cover.p1 { background: linear-gradient(135deg, #d9c9a3, #c9b990); }
+.article-cover.p2 { background: linear-gradient(135deg, #e8d4b8, #d4a256); }
+.article-cover.p3 { background: linear-gradient(135deg, #d4c4a0, #b88a3e); }
+.article-cover.p4 { background: linear-gradient(135deg, #e0d3b5, #b84a1e); }
+.article-cover.p5 { background: linear-gradient(135deg, #ebe0c7, #8f3615); }
+.article-cover.p6 { background: linear-gradient(135deg, #d9c9a3, #9a7230); }
+.cat-pill { position: absolute; top: 1rem; left: 1rem; padding: 0.3rem 0.75rem; background: var(--cream); color: var(--orange-deep); font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; border-radius: 3px; font-weight: 600; }
+.article-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+.article-title { font-family: 'Fraunces', serif; font-size: 1.35rem; font-weight: 500; line-height: 1.2; margin-bottom: 0.75rem; }
+.article-title em { font-style: italic; color: var(--ink-2); }
+.article-excerpt { font-family: 'EB Garamond', serif; font-size: 0.95rem; color: var(--ink-2); line-height: 1.55; margin-bottom: 1rem; flex: 1; }
+.article-meta { display: flex; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--line-faint); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-3); letter-spacing: 0.08em; }
+.read-time { color: var(--orange-deep); font-weight: 500; }
+@media (max-width: 1100px) { .articles-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .articles-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body><nav class="nav">
+<a href="index.html" class="logo"><div class="logo-mark">N</div>Nyay<span>IQ</span></a>
+<ul class="nav-links">
+<li><a href="about.html">About</a></li>
+<li><a href="pricing.html">Pricing</a></li>
+<li><a href="articles.html" class="active">Articles</a></li>
+<li><a href="how-it-works.html">How it works</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<div class="nav-actions">
+<a href="login.html" class="btn btn-text">Log in</a>
+<a href="signup.html" class="btn btn-primary">Sign up</a>
+</div>
+</nav>
+<div class="page-header">
+<div class="page-kicker">Knowledge Base</div>
+<h1 class="page-title">Tax law <em>articles.</em></h1>
+<p class="page-subtitle">In-depth analysis of GST, Income Tax, and appellate matters — written by practicing tax professionals.</p>
+</div>
+<div class="articles-main">
+<div class="articles-filters">
+<button class="filter-btn active">All</button>
+<button class="filter-btn">GST</button>
+<button class="filter-btn">Income Tax</button>
+<button class="filter-btn">Customs</button>
+<button class="filter-btn">ITAT</button>
+<button class="filter-btn">Appeals</button>
+</div>
+<div class="articles-grid">
+<a href="article-single.html" class="article-card">
+<div class="article-cover p1"><span class="cat-pill">GST</span><div class="article-cover-glyph">§</div></div>
+<div class="article-body">
+<h3 class="article-title">Section 74 CGST: When does <em>non-payment</em> become suppression?</h3>
+<p class="article-excerpt">Recent Delhi HC rulings sharpened the contours of Section 74 — positive concealment, not mere omission. A practitioner's guide.</p>
+<div class="article-meta"><span>18 Apr 2026</span><span class="read-time">8 min read</span></div>
+</div>
+</a><a href="article-single.html" class="article-card">
+<div class="article-cover p2"><span class="cat-pill">Income Tax</span><div class="article-cover-glyph">¶</div></div>
+<div class="article-body">
+<h3 class="article-title">Income Tax Act 2025: <em>Structural shifts</em> every practitioner must know.</h3>
+<p class="article-excerpt">The new Act consolidates 60 years of amendments. We map key provisions, deleted sections, and practical implications.</p>
+<div class="article-meta"><span>15 Apr 2026</span><span class="read-time">12 min read</span></div>
+</div>
+</a><a href="article-single.html" class="article-card">
+<div class="article-cover p3"><span class="cat-pill">ITAT</span><div class="article-cover-glyph">◈</div></div>
+<div class="article-body">
+<h3 class="article-title">Cash credits under <em>Section 68:</em> The ever-shifting burden.</h3>
+<p class="article-excerpt">ITAT Delhi's recent decisions redefine 'satisfactory explanation' — bank statements, ITR confirmations, lender docs.</p>
+<div class="article-meta"><span>12 Apr 2026</span><span class="read-time">10 min read</span></div>
+</div>
+</a><a href="article-single.html" class="article-card">
+<div class="article-cover p4"><span class="cat-pill">GST</span><div class="article-cover-glyph">⟐</div></div>
+<div class="article-body">
+<h3 class="article-title">Rule 86A blockings: <em>Challenging the unchallengeable.</em></h3>
+<p class="article-excerpt">Department blocks your ITC without hearing — remedies? Walkthrough of writ jurisdiction, limitation, HC interventions.</p>
+<div class="article-meta"><span>08 Apr 2026</span><span class="read-time">9 min read</span></div>
+</div>
+</a><a href="article-single.html" class="article-card">
+<div class="article-cover p5"><span class="cat-pill">Appeals</span><div class="article-cover-glyph">⟡</div></div>
+<div class="article-body">
+<h3 class="article-title">Drafting the <em>perfect</em> Section 107 GST appeal.</h3>
+<p class="article-excerpt">Grounds, supporting documents, pre-deposit, strategic framing. What separates successful appeals from dismissed.</p>
+<div class="article-meta"><span>04 Apr 2026</span><span class="read-time">15 min read</span></div>
+</div>
+</a><a href="article-single.html" class="article-card">
+<div class="article-cover p6"><span class="cat-pill">Income Tax</span><div class="article-cover-glyph">↯</div></div>
+<div class="article-body">
+<h3 class="article-title">Faceless assessment: <em>Three years</em> of learnings.</h3>
+<p class="article-excerpt">What has faceless regime changed? Common pitfalls, tactical submissions, how to prepare for NFAC video hearing.</p>
+<div class="article-meta"><span>28 Mar 2026</span><span class="read-time">11 min read</span></div>
+</div>
+</a>
+</div>
+<div style="text-align:center; padding:2rem; color:var(--ink-3); font-style:italic;">More articles published weekly.</div>
+</div>
+<footer class="footer">
+<div class="footer-container">
+<div class="footer-grid">
+<div class="footer-brand">
+<a href="index.html" class="logo"><div class="logo-mark">N</div>Nyay<span>IQ</span></a>
+<p class="footer-about">India's AI-powered tax judgement intelligence platform. Built by AdvoFin Consulting Pvt Ltd for practitioners who value their time.</p>
+</div>
+<div class="footer-col">
+<h5>Platform</h5>
+<a href="pricing.html">Pricing</a>
+<a href="articles.html">Articles</a>
+<a href="how-it-works.html">How it works</a>
+<a href="about.html">About</a>
+</div>
+<div class="footer-col">
+<h5>Legal</h5>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+<a href="disclaimer.html">Disclaimer</a>
+<a href="refund.html">Refund Policy</a>
+<a href="cookies.html">Cookies</a>
+</div>
+<div class="footer-col">
+<h5>Contact</h5>
+<a href="mailto:contact@nyayiq.in">contact@nyayiq.in</a>
+<a href="contact.html">Contact form</a>
+<a href="https://linkedin.com/in/advmohitjain" target="_blank">LinkedIn</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© 2026 NyayIQ · AdvoFin Consulting Pvt Ltd · Built in Delhi</div>
+<div class="footer-disclaimer">For informational purposes only. Not legal advice. AI-generated summaries should be verified before use in practice.</div>
+</div>
+</div>
+</footer>
+<script>
+document.querySelectorAll('.filter-btn').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+}));
+</script></body></html>

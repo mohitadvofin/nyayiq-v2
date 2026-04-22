@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — NyayIQ</title>
+<meta name="description" content="Your NyayIQ dashboard">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.dash-grid { display: grid; grid-template-columns: 240px 1fr 320px; gap: 0; min-height: calc(100vh - 0px); }
+.feed-col { padding: 1.5rem; border-right: 1px solid var(--line); overflow-y: auto; }
+.filter-col { padding: 1.5rem; border-right: 1px solid var(--line); background: var(--paper); }
+.ai-col { padding: 1.5rem; background: var(--paper); }
+.dash-app-shell { display: grid; grid-template-columns: 240px 1fr; }
+.filter-group { margin-bottom: 1.5rem; }
+.filter-group h5 { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange-deep); margin-bottom: 0.75rem; font-weight: 500; }
+.filter-option { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0; font-family: 'EB Garamond', serif; font-size: 0.92rem; color: var(--ink-2); cursor: pointer; }
+.filter-option:hover { color: var(--orange-deep); }
+.filter-option input { accent-color: var(--orange-deep); }
+.filter-option .count { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-3); }
+.feed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+.feed-title { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 500; }
+.feed-title em { font-style: italic; color: var(--orange-deep); }
+.feed-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-3); letter-spacing: 0.1em; }
+.search-bar { position: relative; margin-bottom: 1.5rem; }
+.search-bar input { width: 100%; padding: 0.85rem 1rem 0.85rem 2.75rem; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; font-family: 'EB Garamond', serif; font-size: 1rem; }
+.search-bar input:focus { outline: none; border-color: var(--orange-deep); }
+.search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-family: 'Fraunces', serif; color: var(--ink-3); font-size: 1.1rem; }
+.judgement-card { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 1.5rem; margin-bottom: 1rem; transition: all 0.2s; cursor: pointer; }
+.judgement-card:hover { border-color: var(--orange); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(43,31,21,0.08); }
+.jc-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+.jc-court { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--orange-deep); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; }
+.jc-date { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-3); }
+.jc-title { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 500; line-height: 1.25; margin-bottom: 0.75rem; }
+.jc-title em { color: var(--ink-2); font-style: italic; font-weight: 400; }
+.jc-summary { font-family: 'EB Garamond', serif; font-size: 0.95rem; color: var(--ink-2); line-height: 1.55; margin-bottom: 1rem; padding-left: 0.75rem; border-left: 2px solid var(--orange); font-style: italic; }
+.jc-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem; border-top: 1px solid var(--line-faint); }
+.jc-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.jc-actions { display: flex; gap: 0.6rem; }
+.jc-action { background: transparent; border: none; font-family: 'Fraunces', serif; color: var(--ink-3); cursor: pointer; font-size: 1rem; font-style: italic; transition: color 0.2s; padding: 0.2rem 0.5rem; }
+.jc-action:hover { color: var(--orange-deep); }
+.ai-header { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 500; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+.ai-header em { color: var(--orange-deep); font-style: italic; }
+.ai-chat { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+.ai-msg { padding: 0.85rem 1rem; border-radius: 6px; font-family: 'EB Garamond', serif; font-size: 0.92rem; line-height: 1.55; }
+.ai-msg-user { background: var(--cream); align-self: flex-end; max-width: 85%; }
+.ai-msg-bot { background: rgba(184,74,30,0.05); border-left: 2px solid var(--orange); color: var(--ink-2); }
+.ai-input-wrap { position: relative; }
+.ai-input-wrap textarea { width: 100%; padding: 0.85rem 3rem 0.85rem 1rem; background: var(--cream); border: 1px solid var(--line); border-radius: 4px; font-family: 'EB Garamond', serif; font-size: 0.95rem; resize: vertical; min-height: 60px; }
+.ai-send { position: absolute; right: 0.5rem; bottom: 0.5rem; background: var(--orange-deep); color: var(--cream); border: none; border-radius: 4px; padding: 0.4rem 0.7rem; cursor: pointer; font-family: 'Fraunces', serif; font-size: 1rem; font-style: italic; }
+.verdict-favorable { color: var(--green); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; }
+.verdict-against { color: var(--red); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; font-family: 'JetBrains Mono', monospace; }
+@media (max-width: 1200px) { .dash-grid { grid-template-columns: 1fr; } .filter-col, .ai-col { border-right: none; border-bottom: 1px solid var(--line); } }
+</style>
+</head>
+<body><div class="dash-app-shell">
+<aside class="app-sidebar">
+<a href="app.html" class="sidebar-logo"><div class="logo-mark">N</div>Nyay<span style="color:var(--orange-deep);font-style:italic;">IQ</span></a>
+<div class="sidebar-section">
+<div class="sidebar-section-title">Workspace</div>
+<a href="app.html" class="sidebar-link active"><span class="icon">◇</span>Dashboard</a>
+<a href="search.html" class="sidebar-link"><span class="icon">⌕</span>Search</a>
+<a href="upload.html" class="sidebar-link"><span class="icon">↑</span>Upload PDF</a>
+<a href="bookmarks.html" class="sidebar-link"><span class="icon">★</span>Bookmarks</a>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title">Account</div>
+<a href="settings.html" class="sidebar-link"><span class="icon">⚙</span>Settings</a>
+<a href="billing.html" class="sidebar-link"><span class="icon">₹</span>Billing</a>
+<a href="usage.html" class="sidebar-link"><span class="icon">※</span>Usage</a>
+</div>
+<div class="sidebar-footer">
+<div class="sidebar-user">
+<div class="user-avatar">R</div>
+<div class="user-info">
+<div class="user-name">Ramesh Kumar</div>
+<div class="user-plan">PRO PLAN</div>
+</div>
+</div>
+</div>
+</aside>
+<div class="app-main" style="padding: 0;">
+<div class="dash-grid">
+
+<aside class="filter-col">
+<div class="app-h1" style="font-size:1.3rem;margin-bottom:1.5rem;">Filters</div>
+<div class="filter-group">
+<h5>Tax Type</h5>
+<label class="filter-option"><input type="checkbox" checked> GST <span class="count">284</span></label>
+<label class="filter-option"><input type="checkbox" checked> Income Tax <span class="count">189</span></label>
+<label class="filter-option"><input type="checkbox"> Customs <span class="count">47</span></label>
+<label class="filter-option"><input type="checkbox"> FEMA <span class="count">12</span></label>
+</div>
+<div class="filter-group">
+<h5>Court / Forum</h5>
+<label class="filter-option"><input type="checkbox" checked> Supreme Court <span class="count">28</span></label>
+<label class="filter-option"><input type="checkbox" checked> High Courts <span class="count">156</span></label>
+<label class="filter-option"><input type="checkbox" checked> ITAT <span class="count">198</span></label>
+<label class="filter-option"><input type="checkbox"> GST Appellate <span class="count">72</span></label>
+<label class="filter-option"><input type="checkbox"> CIT(A) <span class="count">78</span></label>
+</div>
+<div class="filter-group">
+<h5>Outcome</h5>
+<label class="filter-option"><input type="checkbox"> Assessee favoured <span class="count">312</span></label>
+<label class="filter-option"><input type="checkbox"> Revenue favoured <span class="count">156</span></label>
+<label class="filter-option"><input type="checkbox"> Mixed <span class="count">64</span></label>
+</div>
+<div class="filter-group">
+<h5>Impact</h5>
+<label class="filter-option"><input type="checkbox"> Landmark <span class="count">18</span></label>
+<label class="filter-option"><input type="checkbox"> Binding <span class="count">89</span></label>
+<label class="filter-option"><input type="checkbox"> Persuasive <span class="count">342</span></label>
+</div>
+<button class="btn btn-ghost" style="width:100%;justify-content:center;">Reset filters</button>
+</aside>
+
+<section class="feed-col">
+<div class="feed-header">
+<div>
+<h1 class="feed-title">Today's <em>feed</em></h1>
+<div class="feed-meta">12 NEW · 3 HIGH IMPACT · LAST UPDATE 6:42 AM IST</div>
+</div>
+<button class="btn btn-primary">Export selection</button>
+</div>
+<div class="search-bar">
+<span class="search-icon">⌕</span>
+<input type="text" placeholder="Ask in plain English or Hindi: 'Section 74 suppression cases where returns were filed'">
+</div>
+<article class="judgement-card">
+<div class="jc-header"><span class="jc-court">◆ DELHI HC</span><span class="jc-date">17 APR 2026</span></div>
+<h3 class="jc-title">Rajdhani Crafts Industries <em>v.</em> Commissioner CGST</h3>
+<p class="jc-summary">Section 74 demand quashed — returns filed properly, no positive act of suppression established on record.</p>
+<div class="jc-footer">
+<div class="jc-tags"><span class="tag">GST § 74</span><span class="tag">SUPPRESSION</span><span class="verdict-favorable">◆ ASSESSEE FAVOURED</span></div>
+<div class="jc-actions"><button class="jc-action" title="Bookmark">★</button><button class="jc-action" title="Export">↓</button><a href="judgement.html" class="jc-action">→</a></div>
+</div>
+</article><article class="judgement-card">
+<div class="jc-header"><span class="jc-court">◆ ITAT MUMBAI</span><span class="jc-date">15 APR 2026</span></div>
+<h3 class="jc-title">DCIT <em>v.</em> Arihant Trading Corporation</h3>
+<p class="jc-summary">Extended period barred where department had prior knowledge via earlier audit report.</p>
+<div class="jc-footer">
+<div class="jc-tags"><span class="tag">§ 148A</span><span class="tag">TIME BAR</span><span class="verdict-favorable">◆ ASSESSEE FAVOURED</span></div>
+<div class="jc-actions"><button class="jc-action" title="Bookmark">★</button><button class="jc-action" title="Export">↓</button><a href="judgement.html" class="jc-action">→</a></div>
+</div>
+</article><article class="judgement-card">
+<div class="jc-header"><span class="jc-court">◆ SUPREME COURT</span><span class="jc-date">12 APR 2026</span></div>
+<h3 class="jc-title">State of Gujarat <em>v.</em> Amba Industrial Services</h3>
+<p class="jc-summary">Omission of a disputable legal position cannot be equated with suppression. Three-judge bench.</p>
+<div class="jc-footer">
+<div class="jc-tags"><span class="tag">LANDMARK</span><span class="tag">GST</span><span class="verdict-favorable">◆ ASSESSEE FAVOURED</span></div>
+<div class="jc-actions"><button class="jc-action" title="Bookmark">★</button><button class="jc-action" title="Export">↓</button><a href="judgement.html" class="jc-action">→</a></div>
+</div>
+</article><article class="judgement-card">
+<div class="jc-header"><span class="jc-court">◆ DELHI HC</span><span class="jc-date">10 APR 2026</span></div>
+<h3 class="jc-title">XYZ Traders Pvt Ltd <em>v.</em> Commissioner GST</h3>
+<p class="jc-summary">Rule 86A blocking upheld — department showed material basis for ITC blockage.</p>
+<div class="jc-footer">
+<div class="jc-tags"><span class="tag">RULE 86A</span><span class="tag">ITC</span><span class="verdict-against">◆ AGAINST ASSESSEE</span></div>
+<div class="jc-actions"><button class="jc-action" title="Bookmark">★</button><button class="jc-action" title="Export">↓</button><a href="judgement.html" class="jc-action">→</a></div>
+</div>
+</article><article class="judgement-card">
+<div class="jc-header"><span class="jc-court">◆ ITAT DELHI</span><span class="jc-date">08 APR 2026</span></div>
+<h3 class="jc-title">Ramesh Kumar <em>v.</em> ACIT</h3>
+<p class="jc-summary">Addition under Section 68 deleted — lender's identity, creditworthiness, and genuineness all established.</p>
+<div class="jc-footer">
+<div class="jc-tags"><span class="tag">§ 68</span><span class="tag">CASH CREDIT</span><span class="verdict-favorable">◆ ASSESSEE FAVOURED</span></div>
+<div class="jc-actions"><button class="jc-action" title="Bookmark">★</button><button class="jc-action" title="Export">↓</button><a href="judgement.html" class="jc-action">→</a></div>
+</div>
+</article>
+</section>
+
+<aside class="ai-col">
+<div class="ai-header">AI <em>Co-counsel</em></div>
+<div class="ai-chat">
+<div class="ai-msg ai-msg-user">What's the latest Delhi HC position on Section 74 invocation where returns have been filed?</div>
+<div class="ai-msg ai-msg-bot"><strong>Based on recent rulings:</strong> Delhi HC has consistently held that mere non-payment, where returns were duly filed, does not constitute suppression of facts under Section 74. The Rajdhani Crafts Industries judgement (Apr 2026) is directly on point. The Court relied on Pushpam Pharmaceuticals (SC, 1995) for the proposition that "suppression" requires positive concealment.<br><br><em>3 supporting judgements found.</em> Want me to pull the full texts?</div>
+</div>
+<div class="ai-input-wrap">
+<textarea placeholder="Ask a follow-up question..."></textarea>
+<button class="ai-send">→</button>
+</div>
+<div style="margin-top:1.5rem;padding:1rem;background:rgba(184,138,62,0.05);border:1px solid var(--line);border-radius:6px;font-family:'EB Garamond',serif;font-size:0.85rem;color:var(--ink-3);font-style:italic;line-height:1.55;">
+<strong style="font-style:normal;color:var(--ink-2);">◆ Your usage today:</strong> 3 of unlimited AI summaries · 2 chat queries · Pro plan
+</div>
+</aside>
+
+</div>
+</div>
+</div></body></html>

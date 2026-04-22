@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify email — NyayIQ</title>
+<meta name="description" content="Check your inbox to verify">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.auth-layout { min-height: 100vh; display: grid; grid-template-columns: 1fr 1.2fr; }
+.auth-form-side { padding: 3rem; display: flex; flex-direction: column; position: relative; z-index: 10; }
+.auth-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: auto; }
+.auth-header-link { font-family: 'Inter Tight', sans-serif; font-size: 0.88rem; color: var(--ink-2); text-decoration: none; font-weight: 500; }
+.auth-header-link strong { color: var(--orange-deep); border-bottom: 1px solid var(--orange-deep); }
+.auth-form-container { max-width: 420px; width: 100%; margin: 4rem auto; }
+.auth-kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--orange-deep); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+.auth-kicker::before { content: ''; width: 24px; height: 1px; background: var(--orange-deep); }
+.auth-title { font-family: 'Fraunces', serif; font-weight: 300; font-size: 2.8rem; line-height: 1; letter-spacing: -0.025em; margin-bottom: 0.75rem; }
+.auth-title em { font-style: italic; color: var(--orange-deep); font-weight: 400; }
+.auth-subtitle { font-family: 'EB Garamond', serif; font-size: 1.05rem; color: var(--ink-2); font-style: italic; margin-bottom: 2.5rem; line-height: 1.5; }
+.btn-oauth { width: 100%; padding: 0.95rem 1.25rem; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; font-family: 'Inter Tight', sans-serif; font-size: 0.95rem; font-weight: 500; color: var(--ink); cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.75rem; }
+.btn-oauth:hover { border-color: var(--orange-deep); background: var(--cream); }
+.btn-oauth svg { width: 18px; height: 18px; }
+.auth-divider { display: flex; align-items: center; gap: 1rem; margin: 1.5rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); }
+.auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+.form-checkbox { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; cursor: pointer; font-family: 'EB Garamond', serif; font-size: 0.92rem; color: var(--ink-2); line-height: 1.5; }
+.form-checkbox input { flex-shrink: 0; margin-top: 0.15rem; width: 16px; height: 16px; accent-color: var(--orange-deep); cursor: pointer; }
+.form-checkbox a { color: var(--orange-deep); text-decoration: none; border-bottom: 1px dotted var(--orange-deep); }
+.btn-submit { width: 100%; padding: 1rem 1.5rem; background: var(--orange-deep); color: var(--cream); border: none; border-radius: 4px; font-family: 'Inter Tight', sans-serif; font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+.btn-submit:hover { background: var(--orange); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(143,54,21,0.3); }
+.forgot-link { font-family: 'EB Garamond', serif; font-size: 0.92rem; color: var(--orange-deep); text-decoration: none; font-style: italic; display: block; text-align: right; margin-top: -0.5rem; margin-bottom: 1.25rem; }
+.auth-footer { margin-top: auto; padding-top: 2rem; text-align: center; font-family: 'EB Garamond', serif; font-size: 0.85rem; color: var(--ink-3); }
+.auth-footer a { color: var(--orange-deep); text-decoration: none; }
+.auth-visual-side { background: var(--ink); color: var(--cream); padding: 3rem; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+.auth-visual-side::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(ellipse at 20% 10%, rgba(184,138,62,0.18), transparent 45%), radial-gradient(ellipse at 80% 90%, rgba(184,74,30,0.12), transparent 45%); }
+.auth-visual-side > * { position: relative; z-index: 2; }
+.visual-top { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; }
+.visual-quote { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.15; font-style: italic; max-width: 520px; margin: auto 0; }
+.visual-quote em { color: var(--gold); font-weight: 400; }
+.visual-quote-attr { font-family: 'EB Garamond', serif; font-size: 0.95rem; font-style: normal; color: var(--cream-3); margin-top: 1.5rem; }
+.visual-quote-attr .name { font-family: 'Fraunces', serif; color: var(--gold); font-style: italic; font-weight: 500; display: block; font-size: 1.05rem; margin-bottom: 0.2rem; }
+.visual-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding-top: 2rem; border-top: 1px solid rgba(245,236,217,0.15); }
+.visual-stat-num { font-family: 'Fraunces', serif; font-size: 2rem; color: var(--gold); font-weight: 500; line-height: 1; margin-bottom: 0.3rem; }
+.visual-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; color: var(--cream-3); letter-spacing: 0.15em; text-transform: uppercase; }
+.auth-status-container { max-width: 460px; width: 100%; margin: 4rem auto; text-align: center; }
+.status-icon-wrap { width: 88px; height: 88px; border-radius: 50%; display: grid; place-items: center; margin: 0 auto 2rem; font-family: 'Fraunces', serif; font-size: 2.5rem; font-style: italic; }
+.status-icon-pending { background: rgba(184,138,62,0.12); color: var(--gold); border: 1px solid var(--gold); }
+.status-icon-success { background: rgba(90,122,78,0.12); color: var(--green); border: 1px solid var(--green); }
+.auth-status-title { font-family: 'Fraunces', serif; font-weight: 300; font-size: 2.5rem; line-height: 1.1; margin-bottom: 1rem; }
+.auth-status-title em { font-style: italic; color: var(--orange-deep); font-weight: 400; }
+.auth-status-text { font-family: 'EB Garamond', serif; font-size: 1.05rem; color: var(--ink-2); line-height: 1.6; margin-bottom: 1.5rem; }
+.auth-status-email { font-family: 'JetBrains Mono', monospace; color: var(--orange-deep); font-size: 0.9rem; background: rgba(184,74,30,0.06); padding: 0.2rem 0.5rem; border-radius: 3px; }
+.auth-status-details { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; text-align: left; font-family: 'EB Garamond', serif; font-size: 0.9rem; color: var(--ink-2); line-height: 1.6; }
+.auth-status-details strong { color: var(--ink); }
+.btn-resend { background: transparent; border: 1px solid var(--line); color: var(--ink); padding: 0.85rem 1.5rem; border-radius: 4px; font-family: 'Inter Tight', sans-serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; width: 100%; }
+.btn-resend:hover { border-color: var(--orange-deep); color: var(--orange-deep); }
+@media (max-width: 900px) { .auth-layout { grid-template-columns: 1fr; } .auth-visual-side { display: none; } }
+</style>
+</head>
+<body><div class="auth-layout">
+<div class="auth-form-side">
+<div class="auth-header">
+<a href="index.html" class="logo"><div class="logo-mark">N</div>Nyay<span>IQ</span></a>
+<a href="signup.html" class="auth-header-link">Wrong email? <strong>Sign up again</strong></a>
+</div>
+<div class="auth-status-container">
+<div class="status-icon-wrap status-icon-pending">✉</div>
+<h1 class="auth-status-title">Check your <em>inbox.</em></h1>
+<p class="auth-status-text">We've sent a verification link to <span class="auth-status-email">ramesh.kumar@example.com</span></p>
+<p class="auth-status-text" style="font-size:0.95rem;color:var(--ink-3);font-style:italic;">Click the link to activate your account. It expires in 24 hours.</p>
+<div class="auth-status-details"><strong>Don't see the email?</strong><br>Check your spam folder, or try resending. Make sure <code>contact@nyayiq.in</code> is in your safe-sender list.</div>
+<button class="btn-resend">Resend verification email</button>
+<div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--line-faint);font-family:'EB Garamond',serif;font-size:0.88rem;color:var(--ink-3);font-style:italic;">Still having trouble? <a href="contact.html" style="color:var(--orange-deep);">Contact support</a></div>
+</div>
+</div>
+<div class="auth-visual-side">
+<div class="visual-top">◆ Almost there</div>
+<blockquote class="visual-quote">One click away from <em>hundreds of hours saved</em> on tax research — every month, forever.<div class="visual-quote-attr"><span class="name">Your daily workflow, rebuilt</span>Verify your email to activate NyayIQ</div></blockquote>
+<div class="visual-stats">
+<div><div class="visual-stat-num">~2 min</div><div class="visual-stat-lbl">Setup</div></div>
+<div><div class="visual-stat-num">5</div><div class="visual-stat-lbl">Free AI</div></div>
+<div><div class="visual-stat-num">7 days</div><div class="visual-stat-lbl">Trial</div></div>
+</div>
+</div>
+</div></body></html>
