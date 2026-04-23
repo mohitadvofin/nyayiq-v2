@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookmarks — NyayIQ</title>
+<meta name="description" content="Saved judgements organized by folder">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.bm-main { padding: 2rem 3rem; }
+.folder-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
+.folder-tab { padding: 0.6rem 1.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; font-family: 'Inter Tight', sans-serif; font-size: 0.88rem; color: var(--ink-2); cursor: pointer; font-weight: 500; }
+.folder-tab.active { background: var(--orange-deep); color: var(--cream); border-color: var(--orange-deep); }
+.folder-tab .count { opacity: 0.7; margin-left: 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; }
+.folder-tab.new { border-style: dashed; color: var(--orange-deep); }
+.bookmark-item { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 1.5rem; margin-bottom: 1rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; }
+.bm-details h4 { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 500; margin-bottom: 0.4rem; }
+.bm-details h4 em { color: var(--ink-2); font-style: italic; }
+.bm-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-3); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+.bm-note { background: rgba(184,138,62,0.08); padding: 0.75rem 1rem; border-radius: 4px; font-family: 'EB Garamond', serif; font-size: 0.92rem; font-style: italic; color: var(--ink-2); margin-top: 0.75rem; }
+.bm-note strong { color: var(--ink); font-style: normal; }
+.bm-actions { display: flex; flex-direction: column; gap: 0.5rem; }
+</style>
+</head>
+<body><div class="app-shell">
+<aside class="app-sidebar">
+<a href="app.html" class="sidebar-logo"><div class="logo-mark">N</div>Nyay<span style="color:var(--orange-deep);font-style:italic;">IQ</span></a>
+<div class="sidebar-section">
+<div class="sidebar-section-title">Workspace</div>
+<a href="app.html" class="sidebar-link"><span class="icon">◇</span>Dashboard</a>
+<a href="search.html" class="sidebar-link"><span class="icon">⌕</span>Search</a>
+<a href="upload.html" class="sidebar-link"><span class="icon">↑</span>Upload PDF</a>
+<a href="bookmarks.html" class="sidebar-link active"><span class="icon">★</span>Bookmarks</a>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title">Account</div>
+<a href="settings.html" class="sidebar-link"><span class="icon">⚙</span>Settings</a>
+<a href="billing.html" class="sidebar-link"><span class="icon">₹</span>Billing</a>
+<a href="usage.html" class="sidebar-link"><span class="icon">※</span>Usage</a>
+</div>
+<div class="sidebar-footer">
+<div class="sidebar-user">
+<div class="user-avatar">R</div>
+<div class="user-info">
+<div class="user-name">Ramesh Kumar</div>
+<div class="user-plan">PRO PLAN</div>
+</div>
+</div>
+</div>
+</aside>
+<div class="bm-main">
+<div class="app-header">
+<div>
+<h1 class="app-h1">My <em>bookmarks</em></h1>
+<p class="app-sub">Organized research — by matter, topic, or client. Share folders with your team.</p>
+</div>
+<button class="btn btn-primary">+ New folder</button>
+</div>
+<div class="folder-tabs">
+<button class="folder-tab active">All<span class="count">47</span></button>
+<button class="folder-tab">Section 74 research<span class="count">12</span></button>
+<button class="folder-tab">Client: Northern Gold<span class="count">8</span></button>
+<button class="folder-tab">Article drafts<span class="count">5</span></button>
+<button class="folder-tab">Section 68 cases<span class="count">14</span></button>
+<button class="folder-tab">Rule 86A<span class="count">8</span></button>
+<button class="folder-tab new">+ New folder</button>
+</div>
+<div>
+<div class="bookmark-item">
+<div class="bm-details">
+<h4>Rajdhani Crafts Industries <em>v.</em> Commissioner CGST</h4>
+<div class="bm-meta">◆ DELHI HC · 17 APR 2026 · <span class="tag">GST § 74</span> · <span class="tag tag-green">FAVORABLE</span></div>
+<div class="bm-note"><strong>◆ Your note:</strong> Directly applicable to Northern Gold matter. Use this as lead citation for our Section 74 rebuttal.</div>
+</div>
+<div class="bm-actions"><a href="judgement.html" class="btn btn-ghost">Open →</a><button class="btn btn-ghost">Remove</button></div>
+</div>
+<div class="bookmark-item">
+<div class="bm-details">
+<h4>State of Gujarat <em>v.</em> Amba Industrial Services</h4>
+<div class="bm-meta">◆ SUPREME COURT · 12 APR 2024 · <span class="tag">LANDMARK</span></div>
+<div class="bm-note"><strong>◆ Your note:</strong> Three-judge bench ruling — binding authority on "suppression" interpretation.</div>
+</div>
+<div class="bm-actions"><a href="judgement.html" class="btn btn-ghost">Open →</a><button class="btn btn-ghost">Remove</button></div>
+</div>
+<div class="bookmark-item">
+<div class="bm-details">
+<h4>DCIT <em>v.</em> Arihant Trading Corporation</h4>
+<div class="bm-meta">◆ ITAT MUMBAI · 15 APR 2026 · <span class="tag">§ 148A</span></div>
+<div class="bm-note"><strong>◆ Your note:</strong> Good template for extended-period challenges where audit report predates SCN.</div>
+</div>
+<div class="bm-actions"><a href="judgement.html" class="btn btn-ghost">Open →</a><button class="btn btn-ghost">Remove</button></div>
+</div>
+</div>
+</div>
+</div></body></html>

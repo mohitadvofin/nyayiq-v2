@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Judgements Admin — NyayIQ</title>
+<meta name="description" content="Judgement pipeline management">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.admin-main { padding: 2rem 3rem; }
+.users-table { width: 100%; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; border-collapse: collapse; font-family: 'EB Garamond', serif; }
+.users-table thead { background: var(--cream); }
+.users-table th { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-2); text-align: left; padding: 1rem 1.25rem; font-weight: 500; border-bottom: 1px solid var(--line); }
+.users-table td { padding: 1rem 1.25rem; border-bottom: 1px solid var(--line-faint); font-size: 0.95rem; }
+.users-table tr:last-child td { border-bottom: none; }
+.users-table tr:hover { background: var(--cream); }
+.user-name-cell { display: flex; align-items: center; gap: 0.75rem; }
+.user-name-cell .user-avatar { width: 32px; height: 32px; font-size: 0.8rem; }
+.user-name-cell strong { display: block; }
+.user-name-cell small { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-3); }
+.filter-bar { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.filter-bar input, .filter-bar select { padding: 0.65rem 1rem; border: 1px solid var(--line); border-radius: 4px; background: var(--paper); font-family: 'EB Garamond', serif; font-size: 0.95rem; }
+.filter-bar input { flex: 1; min-width: 250px; }
+</style><style>
+.admin-main { padding: 2rem 3rem; }
+.admin-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+.admin-stat-card { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 1.5rem; }
+.admin-stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--green); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; margin-bottom: 0.75rem; }
+.admin-stat-num { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 400; line-height: 1; margin-bottom: 0.25rem; }
+.admin-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+.admin-block { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 1.75rem; }
+.admin-block h3 { font-family: 'Fraunces', serif; font-size: 1.25rem; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line-faint); }
+.admin-block h3 em { color: var(--green); font-style: italic; }
+.activity-list { list-style: none; }
+.activity-item { display: grid; grid-template-columns: auto 1fr auto; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--line-faint); align-items: center; }
+.activity-item:last-child { border: none; }
+.activity-icon { width: 32px; height: 32px; background: var(--cream); border-radius: 50%; display: grid; place-items: center; font-family: 'Fraunces', serif; color: var(--orange-deep); font-style: italic; font-size: 0.9rem; }
+.activity-text { font-family: 'EB Garamond', serif; font-size: 0.95rem; }
+.activity-text small { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-3); }
+.activity-time { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-3); }
+.health-item { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid var(--line-faint); }
+.health-item:last-child { border: none; }
+.health-label { font-family: 'EB Garamond', serif; }
+.health-status { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 600; }
+.health-dot { width: 8px; height: 8px; border-radius: 50%; }
+.health-ok { color: var(--green); }
+.health-ok .health-dot { background: var(--green); }
+.health-warn { color: var(--gold-deep); }
+.health-warn .health-dot { background: var(--gold); }
+.health-err { color: var(--red); }
+.health-err .health-dot { background: var(--red); }
+@media (max-width: 900px) { .admin-stats { grid-template-columns: 1fr 1fr; } .admin-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body><div class="app-shell">
+<aside class="app-sidebar">
+<a href="admin.html" class="sidebar-logo"><div class="logo-mark" style="background:var(--green);">A</div>Admin<span style="color:var(--green);font-style:italic;"> · NyayIQ</span></a>
+<div class="sidebar-section">
+<div class="sidebar-section-title">Overview</div>
+<a href="admin.html" class="sidebar-link"><span class="icon">◇</span>Dashboard</a>
+<a href="admin-users.html" class="sidebar-link"><span class="icon">👥</span>Users</a>
+<a href="admin-judgements.html" class="sidebar-link active"><span class="icon">§</span>Judgements</a>
+<a href="admin-articles.html" class="sidebar-link"><span class="icon">¶</span>Articles</a>
+</div>
+<div class="sidebar-footer">
+<div class="sidebar-user">
+<div class="user-avatar" style="background:var(--green);">M</div>
+<div class="user-info">
+<div class="user-name">Mohit Jain</div>
+<div class="user-plan" style="color:var(--green);">ADMIN</div>
+</div>
+</div>
+</div>
+</aside>
+<div class="admin-main">
+<div class="app-header">
+<div>
+<h1 class="app-h1">Judgements <em>pipeline</em></h1>
+<p class="app-sub">524 total · 12 pending verification · 8 flagged for review</p>
+</div>
+<div style="display:flex;gap:0.5rem;">
+<button class="btn btn-ghost">Run pipeline now</button>
+<button class="btn btn-primary">+ Manual add</button>
+</div>
+</div>
+<div class="admin-stats">
+<div class="admin-stat-card"><div class="admin-stat-label">◆ TOTAL</div><div class="admin-stat-num">524</div></div>
+<div class="admin-stat-card"><div class="admin-stat-label">◆ AI VERIFIED</div><div class="admin-stat-num">487</div></div>
+<div class="admin-stat-card"><div class="admin-stat-label">◆ PENDING REVIEW</div><div class="admin-stat-num">12</div></div>
+<div class="admin-stat-card"><div class="admin-stat-label">◆ FLAGGED</div><div class="admin-stat-num">8</div></div>
+</div>
+<div class="filter-bar">
+<input type="text" placeholder="Search judgements...">
+<select><option>All statuses</option><option>Verified</option><option>Pending</option><option>Flagged</option><option>Rejected</option></select>
+<select><option>All courts</option><option>Supreme Court</option><option>High Courts</option><option>ITAT</option></select>
+</div>
+<table class="users-table">
+<thead><tr><th>Title</th><th>Court</th><th>Status</th><th>Confidence</th><th>Added</th><th></th></tr></thead>
+<tbody>
+<tr><td><strong>Rajdhani Crafts v. Commr CGST</strong><br><small style="font-family:'JetBrains Mono',monospace;color:var(--ink-3);">W.P.(C) 4872/2025</small></td><td>Delhi HC</td><td><span class="tag tag-green">VERIFIED</span></td><td>98%</td><td>17 Apr 2026</td><td><button class="btn btn-ghost" style="padding:0.4rem 0.75rem;font-size:0.8rem;">Edit →</button></td></tr>
+<tr><td><strong>XYZ Traders v. Commr</strong><br><small style="font-family:'JetBrains Mono',monospace;color:var(--ink-3);">W.P. 5123/2026</small></td><td>Delhi HC</td><td><span class="tag tag-gold">PENDING</span></td><td>87%</td><td>16 Apr 2026</td><td><button class="btn btn-ghost" style="padding:0.4rem 0.75rem;font-size:0.8rem;">Review →</button></td></tr>
+<tr><td><strong>DCIT v. Arihant Trading</strong><br><small style="font-family:'JetBrains Mono',monospace;color:var(--ink-3);">ITA 1847/Mum/2025</small></td><td>ITAT Mumbai</td><td><span class="tag tag-green">VERIFIED</span></td><td>96%</td><td>15 Apr 2026</td><td><button class="btn btn-ghost" style="padding:0.4rem 0.75rem;font-size:0.8rem;">Edit →</button></td></tr>
+<tr><td><strong>Ambiguous Citation Case</strong><br><small style="font-family:'JetBrains Mono',monospace;color:var(--red);">⚠ FLAGGED: CITATION NOT VERIFIABLE</small></td><td>Unknown</td><td><span class="tag" style="background:rgba(160,62,46,0.1);color:var(--red);">FLAGGED</span></td><td>34%</td><td>14 Apr 2026</td><td><button class="btn btn-ghost" style="padding:0.4rem 0.75rem;font-size:0.8rem;color:var(--red);">Review →</button></td></tr>
+</tbody>
+</table>
+</div>
+</div></body></html>

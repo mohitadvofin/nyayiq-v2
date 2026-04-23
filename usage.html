@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Usage — NyayIQ</title>
+<meta name="description" content="Your NyayIQ usage stats">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.acc-main { padding: 2rem 3rem; max-width: 1100px; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+.stat-card { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 1.5rem; position: relative; }
+.stat-card-label { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--orange-deep); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 500; }
+.stat-card-num { font-family: 'Fraunces', serif; font-size: 2.5rem; color: var(--ink); font-weight: 400; line-height: 1; margin-bottom: 0.25rem; }
+.stat-card-delta { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--green); }
+.stat-card-delta.down { color: var(--red); }
+.chart-block { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 2rem; margin-bottom: 1.5rem; }
+.chart-block h3 { font-family: 'Fraunces', serif; font-size: 1.3rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line-faint); }
+.chart-block h3 em { color: var(--orange-deep); font-style: italic; }
+.bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 200px; padding: 1rem 0; }
+.bar { flex: 1; background: linear-gradient(180deg, var(--orange) 0%, var(--orange-deep) 100%); border-radius: 3px 3px 0 0; position: relative; min-height: 4px; transition: all 0.3s; }
+.bar:hover { opacity: 0.85; transform: translateY(-2px); }
+.bar-label { position: absolute; bottom: -1.5rem; left: 50%; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--ink-3); white-space: nowrap; }
+.top-list { list-style: none; }
+.top-list li { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--line-faint); font-family: 'EB Garamond', serif; }
+.top-list li:last-child { border: none; }
+.top-list span:first-child { color: var(--ink); }
+.top-list span:last-child { font-family: 'JetBrains Mono', monospace; color: var(--orange-deep); font-size: 0.85rem; }
+@media (max-width: 900px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body><div class="app-shell">
+<aside class="app-sidebar">
+<a href="app.html" class="sidebar-logo"><div class="logo-mark">N</div>Nyay<span style="color:var(--orange-deep);font-style:italic;">IQ</span></a>
+<div class="sidebar-section">
+<div class="sidebar-section-title">Workspace</div>
+<a href="app.html" class="sidebar-link"><span class="icon">◇</span>Dashboard</a>
+<a href="search.html" class="sidebar-link"><span class="icon">⌕</span>Search</a>
+<a href="upload.html" class="sidebar-link"><span class="icon">↑</span>Upload PDF</a>
+<a href="bookmarks.html" class="sidebar-link"><span class="icon">★</span>Bookmarks</a>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title">Account</div>
+<a href="settings.html" class="sidebar-link"><span class="icon">⚙</span>Settings</a>
+<a href="billing.html" class="sidebar-link"><span class="icon">₹</span>Billing</a>
+<a href="usage.html" class="sidebar-link active"><span class="icon">※</span>Usage</a>
+</div>
+<div class="sidebar-footer">
+<div class="sidebar-user">
+<div class="user-avatar">R</div>
+<div class="user-info">
+<div class="user-name">Ramesh Kumar</div>
+<div class="user-plan">PRO PLAN</div>
+</div>
+</div>
+</div>
+</aside>
+<div class="acc-main">
+<div class="app-header">
+<div>
+<h1 class="app-h1">Your <em>usage</em></h1>
+<p class="app-sub">Track how NyayIQ fits into your practice. Last 30 days.</p>
+</div>
+<select class="sort-select" style="padding:0.5rem 1rem;background:var(--paper);border:1px solid var(--line);border-radius:4px;font-family:'Inter Tight',sans-serif;"><option>Last 30 days</option><option>Last 90 days</option><option>Last 12 months</option></select>
+</div>
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-card-label">◆ AI SUMMARIES</div><div class="stat-card-num">247</div><div class="stat-card-delta">↑ 34% vs last month</div></div>
+<div class="stat-card"><div class="stat-card-label">◆ JUDGEMENTS VIEWED</div><div class="stat-card-num">892</div><div class="stat-card-delta">↑ 22% vs last month</div></div>
+<div class="stat-card"><div class="stat-card-label">◆ SEARCHES</div><div class="stat-card-num">156</div><div class="stat-card-delta">↑ 18% vs last month</div></div>
+<div class="stat-card"><div class="stat-card-label">◆ BOOKMARKS</div><div class="stat-card-num">47</div><div class="stat-card-delta">↑ 12 added</div></div>
+</div>
+<div class="chart-block">
+<h3>Weekly <em>activity</em></h3>
+<div class="bar-chart"><div class="bar" style="height:70px;" title="W1: 35 queries"><span class="bar-label">W1</span></div><div class="bar" style="height:96px;" title="W2: 48 queries"><span class="bar-label">W2</span></div><div class="bar" style="height:84px;" title="W3: 42 queries"><span class="bar-label">W3</span></div><div class="bar" style="height:122px;" title="W4: 61 queries"><span class="bar-label">W4</span></div><div class="bar" style="height:110px;" title="W5: 55 queries"><span class="bar-label">W5</span></div><div class="bar" style="height:144px;" title="W6: 72 queries"><span class="bar-label">W6</span></div><div class="bar" style="height:136px;" title="W7: 68 queries"><span class="bar-label">W7</span></div><div class="bar" style="height:178px;" title="W8: 89 queries"><span class="bar-label">W8</span></div><div class="bar" style="height:152px;" title="W9: 76 queries"><span class="bar-label">W9</span></div><div class="bar" style="height:188px;" title="W10: 94 queries"><span class="bar-label">W10</span></div><div class="bar" style="height:164px;" title="W11: 82 queries"><span class="bar-label">W11</span></div><div class="bar" style="height:182px;" title="W12: 91 queries"><span class="bar-label">W12</span></div></div>
+<p style="margin-top:2.5rem;font-family:'EB Garamond',serif;font-style:italic;color:var(--ink-3);font-size:0.9rem;">You've saved an estimated <strong style="color:var(--orange-deep);font-style:normal;">42 hours</strong> of research time this month compared to manual case searches.</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+<div class="chart-block">
+<h3>Top <em>searches</em></h3>
+<ul class="top-list">
+<li><span>Section 74 suppression</span><span>24×</span></li>
+<li><span>Section 68 cash credit</span><span>18×</span></li>
+<li><span>Rule 86A blocking</span><span>15×</span></li>
+<li><span>Section 148A notice</span><span>11×</span></li>
+<li><span>GST refund limitation</span><span>9×</span></li>
+</ul>
+</div>
+<div class="chart-block">
+<h3>Most <em>viewed</em> judgements</h3>
+<ul class="top-list">
+<li><span>Rajdhani Crafts v. CGST</span><span>12×</span></li>
+<li><span>Amba Industrial v. Gujarat</span><span>9×</span></li>
+<li><span>Pushpam Pharmaceuticals</span><span>7×</span></li>
+<li><span>Arihant Trading v. DCIT</span><span>6×</span></li>
+<li><span>Continental Foundation</span><span>5×</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div></body></html>

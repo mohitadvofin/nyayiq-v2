@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home — NyayIQ</title>
+<meta name="description" content="AI-powered tax judgement intelligence for Indian practitioners">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.hero { padding: 6rem 3rem 5rem; display: grid; grid-template-columns: 1.15fr 1fr; gap: 5rem; align-items: center; min-height: 90vh; max-width: 1440px; margin: 0 auto; }
+.hero-tag { display: inline-flex; align-items: center; gap: 0.7rem; padding: 0.4rem 0.9rem; border: 1px solid var(--line); background: var(--paper); border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 2rem; }
+.live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% {opacity:1;transform:scale(1);} 50% {opacity:0.5;transform:scale(0.85);} }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(3rem, 6.5vw, 5.5rem); line-height: 0.98; letter-spacing: -0.025em; margin-bottom: 1.75rem; }
+.hero h1 em { font-style: italic; color: var(--orange-deep); font-weight: 400; }
+.hero h1 .underline-red { position: relative; display: inline-block; }
+.hero h1 .underline-red::after { content: ''; position: absolute; left: 2%; right: 2%; bottom: 0.08em; height: 3px; background: var(--orange); opacity: 0.4; transform: skewX(-2deg); }
+.hero-sub { font-family: 'EB Garamond', serif; font-size: 1.25rem; color: var(--ink-2); max-width: 540px; margin-bottom: 2.5rem; line-height: 1.55; font-style: italic; }
+.hero-cta { display: flex; gap: 1rem; align-items: center; margin-bottom: 3.5rem; flex-wrap: wrap; }
+.hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; padding-top: 2.25rem; border-top: 1px solid var(--line); max-width: 640px; }
+.stat-num { font-family: 'Fraunces', serif; font-size: 2.2rem; color: var(--orange-deep); font-weight: 500; line-height: 1; display: flex; align-items: baseline; gap: 0.15rem; }
+.stat-num .plus { color: var(--gold); font-size: 0.75em; }
+.stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-3); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 0.5rem; }
+.hero-visual { position: relative; height: 540px; }
+.case-card { position: absolute; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 1.5rem; box-shadow: 0 20px 50px rgba(43,31,21,0.12); transition: transform 0.4s; }
+.case-card-1 { top: 0; left: 0; width: 360px; z-index: 3; transform: rotate(-2deg); }
+.case-card-2 { top: 175px; right: 0; width: 340px; z-index: 2; transform: rotate(2deg); }
+.case-card-3 { bottom: 0; left: 50px; width: 320px; z-index: 1; transform: rotate(-1deg); opacity: 0.88; }
+.case-card:hover { transform: rotate(0) translateY(-4px); z-index: 10; }
+.case-court { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--orange-deep); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 500; }
+.case-title { font-family: 'Fraunces', serif; font-size: 1.1rem; line-height: 1.25; margin-bottom: 0.75rem; font-weight: 500; }
+.case-title em { color: var(--ink-2); font-weight: 400; font-style: italic; }
+.case-summary { font-family: 'EB Garamond', serif; font-size: 0.88rem; color: var(--ink-2); line-height: 1.55; margin-bottom: 1rem; padding-left: 0.75rem; border-left: 2px solid var(--orange); font-style: italic; }
+.case-meta { display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem; border-top: 1px solid var(--line-faint); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; }
+.verdict-favorable { color: var(--green); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; }
+.trust-strip { padding: 3rem; text-align: center; max-width: 900px; margin: 0 auto; }
+.trust-text { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 300; font-style: italic; color: var(--ink-2); line-height: 1.4; }
+.trust-text strong { color: var(--orange-deep); font-weight: 500; font-style: normal; }
+.features { padding: 6rem 3rem; background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.features-container { max-width: 1440px; margin: 0 auto; }
+.section-head { display: grid; grid-template-columns: auto 1fr; gap: 4rem; margin-bottom: 5rem; align-items: end; }
+.section-kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--orange-deep); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-kicker::before { content: ''; width: 30px; height: 1px; background: var(--orange-deep); }
+.section-title { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(2.2rem, 4vw, 3.5rem); line-height: 1; letter-spacing: -0.02em; }
+.section-title em { font-style: italic; color: var(--orange-deep); }
+.section-note { font-family: 'EB Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--ink-3); max-width: 320px; line-height: 1.55; }
+.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.feature { background: var(--paper); padding: 2.5rem 2.25rem; transition: background 0.3s; }
+.feature:hover { background: var(--cream); }
+.feature-num { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--ink-3); letter-spacing: 0.2em; margin-bottom: 2.25rem; display: flex; align-items: center; gap: 0.5rem; }
+.feature-num::after { content: ''; flex: 1; height: 1px; background: var(--line-soft); }
+.feature-symbol { font-family: 'Fraunces', serif; font-size: 2.5rem; color: var(--orange-deep); font-style: italic; margin-bottom: 1.5rem; display: inline-block; }
+.feature h3 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 500; margin-bottom: 0.75rem; line-height: 1.15; }
+.feature p { font-family: 'EB Garamond', serif; font-size: 1rem; color: var(--ink-2); line-height: 1.6; }
+.how-it-works { padding: 6rem 3rem; max-width: 1440px; margin: 0 auto; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 4rem; position: relative; }
+.step::before { content: ''; position: absolute; top: 35px; left: 80px; right: -30px; height: 1px; background: var(--line); z-index: 0; }
+.step:last-child::before { display: none; }
+.step-num { font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 300; color: var(--orange-deep); line-height: 1; font-style: italic; margin-bottom: 1.25rem; display: inline-block; padding: 0 0.5rem; background: var(--cream); position: relative; z-index: 1; }
+.step h4 { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 500; margin-bottom: 0.75rem; line-height: 1.2; }
+.step p { font-family: 'EB Garamond', serif; font-size: 0.95rem; color: var(--ink-2); line-height: 1.6; }
+.pricing-strip { padding: 5rem 3rem; background: var(--orange-deep); color: var(--cream); position: relative; overflow: hidden; }
+.pricing-strip::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(ellipse at 20% 50%, rgba(184,138,62,0.15) 0%, transparent 40%); }
+.pricing-container { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; position: relative; z-index: 2; }
+.pricing-strip h2 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.05; max-width: 680px; letter-spacing: -0.02em; }
+.pricing-strip h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+.pricing-note { font-family: 'EB Garamond', serif; font-size: 1.05rem; color: var(--cream-3); font-style: italic; margin-top: 1rem; }
+@media (max-width: 1100px) { .hero { grid-template-columns: 1fr; gap: 3rem; padding: 6rem 2rem 4rem; } .hero-visual { height: 420px; } .feature-grid { grid-template-columns: 1fr 1fr; } .steps { grid-template-columns: 1fr 1fr; } .step::before { display: none; } .section-head { grid-template-columns: 1fr; gap: 2rem; } .pricing-container { grid-template-columns: 1fr; text-align: center; } }
+@media (max-width: 640px) { .hero-stats { grid-template-columns: 1fr 1fr; } .hero-visual { display: none; } .feature-grid { grid-template-columns: 1fr; } .steps { grid-template-columns: 1fr; } .features, .how-it-works, .pricing-strip { padding: 4rem 1.5rem; } }
+</style>
+</head>
+<body><nav class="nav">
+<a href="index.html" class="logo"><div class="logo-mark">N</div>Nyay<span>IQ</span></a>
+<ul class="nav-links">
+<li><a href="about.html">About</a></li>
+<li><a href="pricing.html">Pricing</a></li>
+<li><a href="articles.html">Articles</a></li>
+<li><a href="how-it-works.html">How it works</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<div class="nav-actions">
+<a href="login.html" class="btn btn-text">Log in</a>
+<a href="signup.html" class="btn btn-primary">Sign up</a>
+</div>
+</nav>
+<section class="hero">
+<div>
+<div class="hero-tag fade-in"><span class="live-dot"></span>LIVE · 500+ JUDGEMENTS · AI-POWERED</div>
+<h1 class="fade-in">Case law that<br><em>reads itself.</em><br>Not <span class="underline-red">hours</span> — seconds.</h1>
+<p class="hero-sub fade-in">Every GST, Income Tax, and ITAT judgement — collected daily, analyzed by AI, served to your practice. Built in Delhi, for Indian tax practitioners.</p>
+<div class="hero-cta fade-in">
+<a href="signup.html" class="btn btn-primary btn-hero">Start free trial →</a>
+<a href="how-it-works.html" class="btn btn-ghost btn-hero">Watch 90-second demo</a>
+</div>
+<div class="hero-stats fade-in">
+<div><div class="stat-num">500<span class="plus">+</span></div><div class="stat-lbl">Judgements</div></div>
+<div><div class="stat-num">27</div><div class="stat-lbl">Courts</div></div>
+<div><div class="stat-num">2020<span class="plus">+</span></div><div class="stat-lbl">Historical</div></div>
+<div><div class="stat-num">0.8s</div><div class="stat-lbl">Query time</div></div>
+</div>
+</div>
+<div class="hero-visual">
+<div class="case-card case-card-1">
+<div class="case-court">◆ DELHI HC · 2025</div>
+<div class="case-title">Rajdhani Crafts Industries <em>v.</em> Commissioner CGST</div>
+<div class="case-summary">Section 74 demand quashed — mere non-payment where returns filed does not constitute suppression of fact.</div>
+<div class="case-meta"><span class="tag">GST § 74</span><span class="verdict-favorable">◆ ASSESSEE FAVOURED</span></div>
+</div>
+<div class="case-card case-card-2">
+<div class="case-court">◆ ITAT MUMBAI · 2025</div>
+<div class="case-title">DCIT <em>v.</em> Arihant Trading Corporation</div>
+<div class="case-summary">Extended period barred where department had prior knowledge via earlier audit report.</div>
+<div class="case-meta"><span class="tag">§ 74</span><span class="verdict-favorable">◆ ASSESSEE FAVOURED</span></div>
+</div>
+<div class="case-card case-card-3">
+<div class="case-court">◆ SUPREME COURT · 2024</div>
+<div class="case-title">State of Gujarat <em>v.</em> Amba Industrial</div>
+<div class="case-summary">Omission of disputable legal position cannot be equated with suppression. Three-judge bench.</div>
+<div class="case-meta"><span class="tag">LANDMARK</span><span class="verdict-favorable">◆ BINDING</span></div>
+</div>
+</div>
+</section>
+<section class="trust-strip">
+<p class="trust-text">"The law doesn't lack good judgements.<br>It lacks a good way to <strong>find and understand them quickly.</strong>"</p>
+</section>
+<section class="features">
+<div class="features-container">
+<div class="section-head">
+<div><div class="section-kicker">Capabilities</div><h2 class="section-title">Everything a tax practitioner<br>needs in <em>one place.</em></h2></div>
+<p class="section-note">Six core capabilities, refined through a decade of practice. No feature bloat.</p>
+</div>
+<div class="feature-grid">
+<div class="feature"><div class="feature-num">01 / 06</div><div class="feature-symbol">§</div><h3>Semantic case search</h3><p>Describe your fact pattern in plain English or Hindi. Find doctrinally similar judgements.</p></div>
+<div class="feature"><div class="feature-num">02 / 06</div><div class="feature-symbol">¶</div><h3>AI ratio extraction</h3><p>Every judgement distilled to ratio, obiter, and holding. Side-by-side compare.</p></div>
+<div class="feature"><div class="feature-num">03 / 06</div><div class="feature-symbol">◈</div><h3>Citation graph</h3><p>Trace how a judgement has been followed, distinguished, or overruled.</p></div>
+<div class="feature"><div class="feature-num">04 / 06</div><div class="feature-symbol">⟐</div><h3>Section → judgement map</h3><p>Click any provision of IT Act or CGST Act — see every interpretation ranked.</p></div>
+<div class="feature"><div class="feature-num">05 / 06</div><div class="feature-symbol">⟡</div><h3>Ask the archive</h3><p>"Show me all ITAT rulings where Section 68 was deleted." Get answers with citations.</p></div>
+<div class="feature"><div class="feature-num">06 / 06</div><div class="feature-symbol">↯</div><h3>PDF analyze</h3><p>Upload any court order PDF — get instant structured analysis.</p></div>
+</div>
+</div>
+</section>
+<section class="how-it-works">
+<div class="section-head">
+<div><div class="section-kicker">The Process</div><h2 class="section-title">How <em>NyayIQ</em> works.</h2></div>
+<p class="section-note">From raw judgement to usable insight — four automated steps, every morning before your first coffee.</p>
+</div>
+<div class="steps">
+<div class="step"><div class="step-num">I.</div><h4>Daily collection</h4><p>Every morning, our automation fetches fresh tax judgements from Indian Kanoon and trusted databases.</p></div>
+<div class="step"><div class="step-num">II.</div><h4>AI analysis</h4><p>Claude AI reads each judgement — extracts issue, held, ratio, sections invoked.</p></div>
+<div class="step"><div class="step-num">III.</div><h4>Smart categorization</h4><p>Tagged by court, tax type, impact level, and outcome. Filter in seconds.</p></div>
+<div class="step"><div class="step-num">IV.</div><h4>Your dashboard</h4><p>Search, bookmark, export, or ask follow-up questions. Ready for your next brief.</p></div>
+</div>
+</section>
+<section class="pricing-strip">
+<div class="pricing-container">
+<div><h2>Seven days free.<br>No card. <em>No catch.</em></h2>
+<p class="pricing-note">Then ₹999/month for individual practitioners. ₹3,999/month for firms.</p></div>
+<a href="pricing.html" class="btn btn-cream btn-hero">View pricing →</a>
+</div>
+</section>
+<footer class="footer">
+<div class="footer-container">
+<div class="footer-grid">
+<div class="footer-brand">
+<a href="index.html" class="logo"><div class="logo-mark">N</div>Nyay<span>IQ</span></a>
+<p class="footer-about">India's AI-powered tax judgement intelligence platform. Built by AdvoFin Consulting Pvt Ltd for practitioners who value their time.</p>
+</div>
+<div class="footer-col">
+<h5>Platform</h5>
+<a href="pricing.html">Pricing</a>
+<a href="articles.html">Articles</a>
+<a href="how-it-works.html">How it works</a>
+<a href="about.html">About</a>
+</div>
+<div class="footer-col">
+<h5>Legal</h5>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+<a href="disclaimer.html">Disclaimer</a>
+<a href="refund.html">Refund Policy</a>
+<a href="cookies.html">Cookies</a>
+</div>
+<div class="footer-col">
+<h5>Contact</h5>
+<a href="mailto:contact@nyayiq.in">contact@nyayiq.in</a>
+<a href="contact.html">Contact form</a>
+<a href="https://linkedin.com/in/advmohitjain" target="_blank">LinkedIn</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© 2026 NyayIQ · AdvoFin Consulting Pvt Ltd · Built in Delhi</div>
+<div class="footer-disclaimer">For informational purposes only. Not legal advice. AI-generated summaries should be verified before use in practice.</div>
+</div>
+</div>
+</footer></body></html>

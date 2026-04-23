@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search — NyayIQ</title>
+<meta name="description" content="Semantic search for tax judgements">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.search-shell { display: grid; grid-template-columns: 240px 1fr; }
+.search-main { padding: 2rem 3rem; }
+.big-search-wrap { max-width: 900px; margin: 2rem 0 3rem; }
+.big-search { position: relative; }
+.big-search input { width: 100%; padding: 1.5rem 4rem 1.5rem 1.5rem; background: var(--paper); border: 2px solid var(--line); border-radius: 6px; font-family: 'EB Garamond', serif; font-size: 1.15rem; }
+.big-search input:focus { outline: none; border-color: var(--orange-deep); box-shadow: 0 0 0 4px rgba(184,74,30,0.08); }
+.big-search-btn { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); background: var(--orange-deep); color: var(--cream); border: none; border-radius: 4px; padding: 0.7rem 1rem; font-family: 'Fraunces', serif; font-size: 1.2rem; cursor: pointer; font-style: italic; }
+.search-hint { font-family: 'EB Garamond', serif; font-style: italic; color: var(--ink-3); font-size: 0.95rem; margin-top: 0.75rem; padding-left: 1rem; }
+.search-examples { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-bottom: 3rem; }
+.search-example { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 1rem 1.25rem; font-family: 'EB Garamond', serif; font-size: 0.95rem; color: var(--ink-2); font-style: italic; cursor: pointer; transition: all 0.2s; }
+.search-example:hover { border-color: var(--orange-deep); background: var(--cream); color: var(--ink); }
+.search-example::before { content: '⌕ '; color: var(--orange-deep); font-style: normal; }
+.results-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+.results-count { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--ink-3); letter-spacing: 0.08em; }
+.results-count strong { color: var(--orange-deep); }
+.sort-select { padding: 0.5rem 1rem; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; font-family: 'Inter Tight', sans-serif; font-size: 0.88rem; }
+@media (max-width: 700px) { .search-examples { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body><div class="search-shell">
+<aside class="app-sidebar">
+<a href="app.html" class="sidebar-logo"><div class="logo-mark">N</div>Nyay<span style="color:var(--orange-deep);font-style:italic;">IQ</span></a>
+<div class="sidebar-section">
+<div class="sidebar-section-title">Workspace</div>
+<a href="app.html" class="sidebar-link"><span class="icon">◇</span>Dashboard</a>
+<a href="search.html" class="sidebar-link active"><span class="icon">⌕</span>Search</a>
+<a href="upload.html" class="sidebar-link"><span class="icon">↑</span>Upload PDF</a>
+<a href="bookmarks.html" class="sidebar-link"><span class="icon">★</span>Bookmarks</a>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title">Account</div>
+<a href="settings.html" class="sidebar-link"><span class="icon">⚙</span>Settings</a>
+<a href="billing.html" class="sidebar-link"><span class="icon">₹</span>Billing</a>
+<a href="usage.html" class="sidebar-link"><span class="icon">※</span>Usage</a>
+</div>
+<div class="sidebar-footer">
+<div class="sidebar-user">
+<div class="user-avatar">R</div>
+<div class="user-info">
+<div class="user-name">Ramesh Kumar</div>
+<div class="user-plan">PRO PLAN</div>
+</div>
+</div>
+</div>
+</aside>
+<div class="search-main">
+<div class="app-header">
+<div>
+<h1 class="app-h1">Semantic <em>Search</em></h1>
+<p class="app-sub">Describe your fact pattern in plain English or Hindi. Find doctrinally similar judgements.</p>
+</div>
+</div>
+
+<div class="big-search-wrap">
+<div class="big-search">
+<input type="text" placeholder="Describe your situation... e.g. 'Section 74 invoked where returns were filed, no element of suppression'">
+<button class="big-search-btn">→</button>
+</div>
+<p class="search-hint">Semantic search understands meaning, not just keywords. Supports Hindi + English.</p>
+</div>
+
+<div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--orange-deep);letter-spacing:0.2em;margin-bottom:1rem;">◆ TRY THESE</div>
+<div class="search-examples">
+<div class="search-example">Cases where ITAT deleted Section 68 addition because lender was a bank</div>
+<div class="search-example">GST refund rejected on limitation grounds but HC allowed in writ</div>
+<div class="search-example">Faceless assessment challenges succeeded</div>
+<div class="search-example">Recent landmark judgements on Rule 86A blockings</div>
+<div class="search-example">Extended period barred because dept had knowledge</div>
+<div class="search-example">NCLT tax matters intersecting with IBC moratorium</div>
+</div>
+
+<div class="results-header">
+<div class="results-count"><strong>18</strong> matching judgements · Ranked by relevance</div>
+<select class="sort-select"><option>Most relevant</option><option>Most recent</option><option>By court authority</option></select>
+</div>
+
+<article class="judgement-card" style="background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:1.5rem;margin-bottom:1rem;">
+<div class="jc-header" style="display:flex;justify-content:space-between;margin-bottom:0.75rem;"><span class="jc-court" style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--orange-deep);letter-spacing:0.15em;text-transform:uppercase;">◆ DELHI HC · 17 APR 2026</span><span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--green);">◆ 98% MATCH</span></div>
+<h3 class="jc-title" style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:0.75rem;">Rajdhani Crafts Industries <em style="color:var(--ink-2);font-style:italic;">v.</em> Commissioner CGST</h3>
+<p class="jc-summary" style="font-family:'EB Garamond',serif;font-size:0.95rem;color:var(--ink-2);padding-left:0.75rem;border-left:2px solid var(--orange);font-style:italic;">Section 74 demand quashed — mere non-payment where returns filed does not constitute suppression of fact.</p>
+<div style="display:flex;gap:0.4rem;margin-top:1rem;"><span class="tag">GST § 74</span><span class="tag">SUPPRESSION</span><span class="tag tag-green">FAVORABLE</span></div>
+</article>
+
+<article class="judgement-card" style="background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:1.5rem;margin-bottom:1rem;">
+<div class="jc-header" style="display:flex;justify-content:space-between;margin-bottom:0.75rem;"><span class="jc-court" style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--orange-deep);letter-spacing:0.15em;text-transform:uppercase;">◆ SC · 12 APR 2024</span><span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--green);">◆ 91% MATCH</span></div>
+<h3 class="jc-title" style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:0.75rem;">State of Gujarat <em style="color:var(--ink-2);font-style:italic;">v.</em> Amba Industrial Services</h3>
+<p class="jc-summary" style="font-family:'EB Garamond',serif;font-size:0.95rem;color:var(--ink-2);padding-left:0.75rem;border-left:2px solid var(--orange);font-style:italic;">Omission of disputable legal position cannot be equated with suppression. Three-judge bench.</p>
+<div style="display:flex;gap:0.4rem;margin-top:1rem;"><span class="tag">LANDMARK</span><span class="tag">GST § 74</span></div>
+</article>
+</div>
+</div></body></html>

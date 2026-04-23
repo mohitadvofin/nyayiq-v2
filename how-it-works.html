@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works — NyayIQ</title>
+<meta name="description" content="Four automated steps from judgement to insight">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.how-main { max-width: 1200px; margin: 0 auto; padding: 2rem 3rem 4rem; }
+.process-step { display: grid; grid-template-columns: 120px 1fr; gap: 3rem; padding: 3rem 0; border-bottom: 1px solid var(--line); align-items: start; }
+.process-step:last-child { border-bottom: none; }
+.process-num { font-family: 'Fraunces', serif; font-size: 5rem; font-weight: 300; color: var(--orange-deep); line-height: 1; font-style: italic; }
+.process-step h3 { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 500; margin-bottom: 1rem; line-height: 1.1; }
+.process-step h3 em { font-style: italic; color: var(--orange-deep); }
+.process-step p { font-family: 'EB Garamond', serif; font-size: 1.1rem; color: var(--ink-2); line-height: 1.7; margin-bottom: 1rem; }
+.process-list { list-style: none; margin-top: 1.25rem; }
+.process-list li { padding: 0.4rem 0; font-family: 'EB Garamond', serif; color: var(--ink-2); padding-left: 1.25rem; position: relative; }
+.process-list li::before { content: '◆'; position: absolute; left: 0; color: var(--orange); font-size: 0.7rem; top: 0.6rem; }
+.transparency-block { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 2.5rem; margin: 3rem 0; }
+.transparency-block h3 { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 500; margin-bottom: 1.25rem; }
+.model-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+.model-card { padding: 1rem 1.25rem; background: var(--cream); border-radius: 4px; border-left: 3px solid var(--gold); }
+.model-card strong { display: block; font-family: 'Fraunces', serif; font-size: 1.05rem; }
+.model-card span { font-family: 'EB Garamond', serif; font-size: 0.9rem; color: var(--ink-2); font-style: italic; }
+@media (max-width: 900px) { .process-step { grid-template-columns: 1fr; gap: 1rem; } .model-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body><nav class="nav">
+<a href="index.html" class="logo"><div class="logo-mark">N</div>Nyay<span>IQ</span></a>
+<ul class="nav-links">
+<li><a href="about.html">About</a></li>
+<li><a href="pricing.html">Pricing</a></li>
+<li><a href="articles.html">Articles</a></li>
+<li><a href="how-it-works.html" class="active">How it works</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<div class="nav-actions">
+<a href="login.html" class="btn btn-text">Log in</a>
+<a href="signup.html" class="btn btn-primary">Sign up</a>
+</div>
+</nav>
+<div class="page-header">
+<div class="page-kicker">How It Works</div>
+<h1 class="page-title">From judgement to <em>insight.</em></h1>
+<p class="page-subtitle">Every morning, automation does the research work. Every query, AI makes the synthesis. Your practice, amplified.</p>
+</div>
+<div class="how-main">
+
+<div class="process-step">
+<div class="process-num">I.</div>
+<div>
+<h3>Daily <em>collection.</em></h3>
+<p>Before 7 AM IST every morning, our pipeline pulls fresh tax judgements from trusted sources — Indian Kanoon, Delhi HC website, ITAT portal, Supreme Court e-copy service.</p>
+<ul class="process-list">
+<li>Covers Supreme Court, all 25 High Courts, ITAT benches, GST Appellate Authority, CIT(A)</li>
+<li>Focuses on GST, Income Tax, Customs, FEMA, and NCLT tax-related matters</li>
+<li>De-duplicates and filters out routine administrative orders</li>
+<li>Full text with original citations preserved</li>
+</ul>
+</div>
+</div>
+
+<div class="process-step">
+<div class="process-num">II.</div>
+<div>
+<h3>AI <em>analysis.</em></h3>
+<p>Each judgement is analyzed by Claude 4.5/4.7 — Anthropic's most accurate legal-reasoning model. We don't just summarize, we structure.</p>
+<ul class="process-list">
+<li>Extracts parties, court, bench, date of pronouncement</li>
+<li>Identifies the legal issue and factual matrix</li>
+<li>Separates ratio from obiter</li>
+<li>Captures the holding and practical implication</li>
+<li>Auto-tags with sections invoked (§74, §68, §148A, etc.)</li>
+</ul>
+</div>
+</div>
+
+<div class="process-step">
+<div class="process-num">III.</div>
+<div>
+<h3>Smart <em>categorization.</em></h3>
+<p>Every judgement gets tagged across multiple dimensions — so you find what you need in seconds.</p>
+<ul class="process-list">
+<li><strong>By tax type:</strong> GST, Income Tax, Customs, FEMA</li>
+<li><strong>By court:</strong> SC, HC (state-wise), Tribunals</li>
+<li><strong>By outcome:</strong> Favour assessee, favour revenue, mixed</li>
+<li><strong>By impact:</strong> Landmark, binding, persuasive, distinguishable</li>
+<li><strong>By topic:</strong> Assessment, refund, penalty, ITC, TDS, etc.</li>
+</ul>
+</div>
+</div>
+
+<div class="process-step">
+<div class="process-num">IV.</div>
+<div>
+<h3>Your <em>dashboard.</em></h3>
+<p>The processed intelligence arrives in your inbox and dashboard. Search, filter, bookmark, export, or chat with it.</p>
+<ul class="process-list">
+<li>Morning email digest: top 5 must-read judgements</li>
+<li>Semantic search: describe fact pattern, find similar cases</li>
+<li>Ask follow-up questions via integrated chat</li>
+<li>Upload your own PDF judgements for analysis</li>
+<li>Export structured summaries to Word/PDF for briefs</li>
+</ul>
+</div>
+</div>
+
+<div class="transparency-block">
+<h3>On <em>transparency.</em></h3>
+<p style="font-family:'EB Garamond',serif;font-size:1.05rem;line-height:1.7;color:var(--ink-2);margin-bottom:1rem;">We disclose openly how NyayIQ works. This is research infrastructure, not a black box.</p>
+<div class="model-grid">
+<div class="model-card"><strong>Claude Sonnet 4.5</strong><span>Fast structured extraction</span></div>
+<div class="model-card"><strong>Claude Opus 4.7</strong><span>Complex reasoning and synthesis</span></div>
+<div class="model-card"><strong>Indian Kanoon API</strong><span>Citation verification</span></div>
+<div class="model-card"><strong>Paralegal review</strong><span>Manual spot-checks for accuracy</span></div>
+</div>
+<p style="margin-top:1.5rem;font-family:'EB Garamond',serif;font-style:italic;color:var(--ink-3);">Every AI summary includes a confidence badge. Where citations can't be verified, we flag them. The original judgement is always one click away. Always verify before citing.</p>
+</div>
+
+</div>
+<footer class="footer">
+<div class="footer-container">
+<div class="footer-grid">
+<div class="footer-brand">
+<a href="index.html" class="logo"><div class="logo-mark">N</div>Nyay<span>IQ</span></a>
+<p class="footer-about">India's AI-powered tax judgement intelligence platform. Built by AdvoFin Consulting Pvt Ltd for practitioners who value their time.</p>
+</div>
+<div class="footer-col">
+<h5>Platform</h5>
+<a href="pricing.html">Pricing</a>
+<a href="articles.html">Articles</a>
+<a href="how-it-works.html">How it works</a>
+<a href="about.html">About</a>
+</div>
+<div class="footer-col">
+<h5>Legal</h5>
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Use</a>
+<a href="disclaimer.html">Disclaimer</a>
+<a href="refund.html">Refund Policy</a>
+<a href="cookies.html">Cookies</a>
+</div>
+<div class="footer-col">
+<h5>Contact</h5>
+<a href="mailto:contact@nyayiq.in">contact@nyayiq.in</a>
+<a href="contact.html">Contact form</a>
+<a href="https://linkedin.com/in/advmohitjain" target="_blank">LinkedIn</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© 2026 NyayIQ · AdvoFin Consulting Pvt Ltd · Built in Delhi</div>
+<div class="footer-disclaimer">For informational purposes only. Not legal advice. AI-generated summaries should be verified before use in practice.</div>
+</div>
+</div>
+</footer></body></html>
